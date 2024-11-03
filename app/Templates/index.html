@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piškvorky</title>
+    <style>
+        table { border-collapse: collapse; }
+        td {
+            width: 30px; height: 30px; text-align: center;
+            border: 1px solid black; font-size: 24px;
+        }
+        .winner { color: green; font-size: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Piškvorky</h1>
+    {% if game.winner %}
+        <p class="winner">Hráč {{ game.winner }} vyhrál!</p>
+    {% else %}
+        <p>Na tahu je hráč: {{ game.current_player }}</p>
+    {% endif %}
+    <table>
+        {% for i in range(game.size) %}
+            <tr>
+                {% for j in range(game.size) %}
+                    <td>
+                        {% if game.board[i][j] == ' ' and not game.winner %}
+                            <form action="{{ url_for('move') }}" method="POST" style="display:inline;">
+                                <input type="hidden" name="row" value="{{ i }}">
+                                <input type="hidden" name="col" value="{{ j }}">
+                                <button type="submit" style="width: 100%; height: 100%;"></button>
+                            </form>
+                        {% else %}
+                            {{ game.board[i][j] }}
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <form action="{{ url_for('reset') }}" method="get">
+        <button type="submit">Restartovat hru</button>
+    </form>
+</body>
+</html>
