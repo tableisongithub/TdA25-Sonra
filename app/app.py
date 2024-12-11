@@ -17,11 +17,13 @@ except OSError:
 
 db.init_app(app)
 
-
 @app.route('/')
 def hello_world():  # put application's code here
-    return "Hello Tour de App!"
+    return "<html><head><title>Test</title></head><body>Hello TdA</body></html>"
 
+@app.route("/api")
+def return_api():
+    return '{"organization": "Student Cyber Games"}'
 
 if __name__ == '__main__':
     app.run()
