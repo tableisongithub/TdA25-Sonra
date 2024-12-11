@@ -5,9 +5,9 @@ from . import db
 
 app = Flask(__name__)
 
-app.config.from_mapping(
-    DATABASE=os.path.join(app.instance_path, 'tourdeflask.sqlite'),
-)
+# app.config.from_mapping(
+#     DATABASE=os.path.join(app.instance_path, 'tourdeflask.sqlite'),
+# )
 
 # ensure the instance folder exists
 try:
@@ -15,7 +15,7 @@ try:
 except OSError:
     pass
 
-db.init_app(app)
+# db.init_app(app)
 
 @app.route('/')
 def hello_world():  # put application's code here
