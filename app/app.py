@@ -26,4 +26,4 @@ def return_api():
     return '{"organization": "Student Cyber Games"}'
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
